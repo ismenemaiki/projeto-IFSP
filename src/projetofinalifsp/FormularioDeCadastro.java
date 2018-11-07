@@ -6,9 +6,14 @@
 package projetofinalifsp;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import java.awt.geom.Area;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +26,9 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
      */
     public FormularioDeCadastro() {
         initComponents();
+        carrega_combo();
+
+        
     }
 
     /**
@@ -85,10 +93,34 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
         });
 
         check_vespertino.setText("Vespertino");
+        check_vespertino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_vespertinoActionPerformed(evt);
+            }
+        });
 
         check_noturno.setText("Noturno");
+        check_noturno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_noturnoActionPerformed(evt);
+            }
+        });
 
-        comboArea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboArea.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboAreaItemStateChanged(evt);
+            }
+        });
+        comboArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboAreaMouseClicked(evt);
+            }
+        });
+        comboArea.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                comboAreaComponentShown(evt);
+            }
+        });
         comboArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboAreaActionPerformed(evt);
@@ -176,28 +208,51 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
 
     private void txt_vagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_vagasActionPerformed
         // TODO add your handling code here:
+        String vagas = txt_vagas.toString();
     }//GEN-LAST:event_txt_vagasActionPerformed
-
+    private void carrega_combo()
+    {
+                   ArrayList<String> combo = new ArrayList<>();
+            combo.add("Humanas");
+            combo.add("Biologicas");
+            combo.add("Exatas");
+            
+       DefaultComboBoxModel defaultComboModel;
+        //System.out.print(Arrays.toString(combo.toArray()));
+        defaultComboModel = new DefaultComboBoxModel(combo.toArray());
+        
+        comboArea.setModel(defaultComboModel);
+    }
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
         // TODO add your handling code here:
+        //COLOCAR EM UMA VARIAVEL E IMPRIMIR AS SELECIONADAS
+        System.out.println("Disciplina: " + txt_nome.getText());
+        System.out.println("Carga horaria: " + txt_carga.getText()+" horas");
+        //AREA
+        System.out.println("Qtd de vagas: "+ txt_vagas.getText());
+                
+        if(check_diurno.isSelected())
+        {
+            System.out.println("Periodo: " + check_diurno.getText());
+        }
         
-        System.out.println(txt_nome.getText());
-        //System.out.println(check_diurno.getText());
-        System.out.println(txt_carga.getText());
+        if (check_vespertino.isSelected())
+        {
+            System.out.println("Periodo: " + check_vespertino.getText());
+        }
         
+        if(check_noturno.isSelected())
+        {
+            System.out.println("Periodo: " + check_noturno.getText());
+        }
+        
+     //   String Disciplina = "insert into tabela (disciplina, cargaHoraria,)"
         
     }//GEN-LAST:event_btn_cadastrarActionPerformed
 
     private void check_diurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_diurnoActionPerformed
-        // TODO add your handling code here:
-        if (check_diurno.isSelected())
-        {
-            JCheckBox Diurno = check_diurno;
-             System.out.println("Entrei no 1° if");
-        } else
-        {
-            JCheckBox HAHA = check_diurno;
-        }
+      
+       
     }//GEN-LAST:event_check_diurnoActionPerformed
 
     private void txt_cargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cargaActionPerformed
@@ -206,19 +261,34 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_cargaActionPerformed
 
     private void comboAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAreaActionPerformed
+        //CHAMA O CARREGAR AREA  
+    }//GEN-LAST:event_comboAreaActionPerformed
+
+    private void check_vespertinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_vespertinoActionPerformed
         // TODO add your handling code here:
         
-        //String [] combox = {"Materia 1", "Materia 2"};
-       // comboArea.addActionListener(comboArea.getAction());
-        //String combo = String.valueOf(comboArea.setSelectedItem(combox))));
-        //comboArea.addItem("teste");
-        //comboAreaActionPerformed(combox) = combox;
+    }//GEN-LAST:event_check_vespertinoActionPerformed
+
+    private void check_noturnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_noturnoActionPerformed
+        // TODO add your handling code here:
         
-        String[] str = {"Java4s","Siva"}; 
+    }//GEN-LAST:event_check_noturnoActionPerformed
 
-          List<String> list = Arrays.asList(str);
+    private void comboAreaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_comboAreaComponentShown
+        // TODO add your handling code here:
+         
+   
+    }//GEN-LAST:event_comboAreaComponentShown
 
-    }//GEN-LAST:event_comboAreaActionPerformed
+    private void comboAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboAreaMouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_comboAreaMouseClicked
+
+    private void comboAreaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAreaItemStateChanged
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Seu nome é comboAreaItemStateChanged" + comboArea.getSelectedItem() );
+    }//GEN-LAST:event_comboAreaItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -246,7 +316,7 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FormularioDeCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
