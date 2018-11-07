@@ -212,14 +212,13 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_vagasActionPerformed
     private void carrega_combo()
     {
-                   ArrayList<String> combo = new ArrayList<>();
+        ArrayList<String> combo = new ArrayList<>();
             combo.add("Humanas");
             combo.add("Biologicas");
             combo.add("Exatas");
             
        DefaultComboBoxModel defaultComboModel;
-        //System.out.print(Arrays.toString(combo.toArray()));
-        defaultComboModel = new DefaultComboBoxModel(combo.toArray());
+       defaultComboModel = new DefaultComboBoxModel(combo.toArray());
         
         comboArea.setModel(defaultComboModel);
     }
@@ -230,21 +229,18 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
         System.out.println("Carga horaria: " + txt_carga.getText()+" horas");
         //AREA
         System.out.println("Qtd de vagas: "+ txt_vagas.getText());
-                
-        if(check_diurno.isSelected())
-        {
-            System.out.println("Periodo: " + check_diurno.getText());
-        }
-        
-        if (check_vespertino.isSelected())
-        {
-            System.out.println("Periodo: " + check_vespertino.getText());
-        }
-        
-        if(check_noturno.isSelected())
-        {
-            System.out.println("Periodo: " + check_noturno.getText());
-        }
+            if(check_diurno.isSelected())
+            {
+                System.out.println("Periodo: " + check_diurno.getText());
+            }
+            if (check_vespertino.isSelected())
+            {
+                System.out.println("Periodo: " + check_vespertino.getText());
+            }
+            if(check_noturno.isSelected())
+            {
+                System.out.println("Periodo: " + check_noturno.getText());
+            }
         
      //   String Disciplina = "insert into tabela (disciplina, cargaHoraria,)"
         
@@ -270,30 +266,26 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_check_vespertinoActionPerformed
 
     private void check_noturnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_noturnoActionPerformed
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:        
     }//GEN-LAST:event_check_noturnoActionPerformed
 
     private void comboAreaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_comboAreaComponentShown
-        // TODO add your handling code here:
-         
-   
+        // TODO add your handling code here:         
     }//GEN-LAST:event_comboAreaComponentShown
 
     private void comboAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboAreaMouseClicked
-        // TODO add your handling code here:
-       
+        // TODO add your handling code here:       
     }//GEN-LAST:event_comboAreaMouseClicked
 
     private void comboAreaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAreaItemStateChanged
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Seu nome é comboAreaItemStateChanged" + comboArea.getSelectedItem() );
+        JOptionPane.showMessageDialog(null, "SELECIONADO" + comboArea.getSelectedItem() );
     }//GEN-LAST:event_comboAreaItemStateChanged
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) {;;
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
