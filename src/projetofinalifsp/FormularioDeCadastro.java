@@ -5,7 +5,9 @@
  */
 package projetofinalifsp;
 
+import com.sun.java.swing.plaf.windows.resources.windows;
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import java.awt.event.WindowEvent;
 import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,8 +29,6 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
     public FormularioDeCadastro() {
         initComponents();
         carrega_combo();
-
-        
     }
 
     /**
@@ -54,6 +54,7 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
         comboArea = new javax.swing.JComboBox<>();
         btn_cadastrar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,41 +136,56 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
         });
 
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Ubuntu Medium", 0, 24)); // NOI18N
+        jLabel6.setText("Cadastro de disciplina");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_vagas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_cancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_cadastrar))
-                    .addComponent(comboArea, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_carga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(check_diurno)
-                        .addGap(18, 18, 18)
-                        .addComponent(check_vespertino)
-                        .addGap(10, 10, 10)
-                        .addComponent(check_noturno)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(96, 96, 96))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_vagas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_cancelar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_cadastrar))
+                            .addComponent(comboArea, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_carga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(check_diurno)
+                                .addGap(18, 18, 18)
+                                .addComponent(check_vespertino)
+                                .addGap(10, 10, 10)
+                                .addComponent(check_noturno)))
+                        .addGap(50, 50, 50))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -181,7 +197,7 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(comboArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_vagas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -195,21 +211,12 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cadastrar)
                     .addComponent(btn_cancelar))
-                .addGap(20, 20, 20))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeActionPerformed
-        // TODO add your handling code here:
-        String nome = txt_nome.toString();
-    }//GEN-LAST:event_txt_nomeActionPerformed
-
-    private void txt_vagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_vagasActionPerformed
-        // TODO add your handling code here:
-        String vagas = txt_vagas.toString();
-    }//GEN-LAST:event_txt_vagasActionPerformed
     private void carrega_combo()
     {
         ArrayList<String> combo = new ArrayList<>();
@@ -222,12 +229,29 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
         
         comboArea.setModel(defaultComboModel);
     }
+    public void windowClosed(WindowEvent e) {
+        
+    }
+    private void cancelar()
+    {
+        this.dispose();
+    }
+    private void txt_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeActionPerformed
+        // TODO add your handling code here:
+        String nome = txt_nome.toString();
+    }//GEN-LAST:event_txt_nomeActionPerformed
+
+    private void txt_vagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_vagasActionPerformed
+        // TODO add your handling code here:
+        String vagas = txt_vagas.toString();
+    }//GEN-LAST:event_txt_vagasActionPerformed
+    
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
         // TODO add your handling code here:
         //COLOCAR EM UMA VARIAVEL E IMPRIMIR AS SELECIONADAS
         System.out.println("Disciplina: " + txt_nome.getText());
-        System.out.println("Carga horaria: " + txt_carga.getText()+" horas");
-        //AREA
+        System.out.println("Carga horaria: " + txt_carga.getText()+ " horas");
+        System.out.println("Area: " + comboArea.getSelectedItem());
         System.out.println("Qtd de vagas: "+ txt_vagas.getText());
             if(check_diurno.isSelected())
             {
@@ -247,8 +271,7 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_cadastrarActionPerformed
 
     private void check_diurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_diurnoActionPerformed
-      
-       
+             
     }//GEN-LAST:event_check_diurnoActionPerformed
 
     private void txt_cargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cargaActionPerformed
@@ -261,8 +284,7 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_comboAreaActionPerformed
 
     private void check_vespertinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_vespertinoActionPerformed
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:        
     }//GEN-LAST:event_check_vespertinoActionPerformed
 
     private void check_noturnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_noturnoActionPerformed
@@ -279,8 +301,13 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
 
     private void comboAreaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAreaItemStateChanged
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "SELECIONADO" + comboArea.getSelectedItem() );
+        //JOptionPane.showMessageDialog(null, "SELECIONADO" + comboArea.getSelectedItem() );
     }//GEN-LAST:event_comboAreaItemStateChanged
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        // TODO add your handling code here:
+        cancelar();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,6 +356,7 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txt_carga;
     private javax.swing.JTextField txt_nome;
     private javax.swing.JTextField txt_vagas;
