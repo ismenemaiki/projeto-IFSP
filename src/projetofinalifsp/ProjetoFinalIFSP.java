@@ -10,7 +10,6 @@ package projetofinalifsp;
  * @author Maiki
  */
 public class ProjetoFinalIFSP {
-    //public String area;
     
     public static void main(String[] args) {
         // TODO code application logic here

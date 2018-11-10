@@ -9,10 +9,17 @@ import com.sun.java.swing.plaf.windows.resources.windows;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import java.awt.event.WindowEvent;
 import java.awt.geom.Area;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
@@ -163,21 +170,21 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_vagas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_cancelar)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_cadastrar))
-                            .addComponent(comboArea, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_carga, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(check_diurno)
                                 .addGap(18, 18, 18)
                                 .addComponent(check_vespertino)
                                 .addGap(10, 10, 10)
-                                .addComponent(check_noturno)))
+                                .addComponent(check_noturno))
+                            .addComponent(comboArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_nome)
+                            .addComponent(txt_carga, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_vagas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50))))
         );
         layout.setVerticalGroup(
@@ -223,10 +230,8 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
             combo.add("Humanas");
             combo.add("Biologicas");
             combo.add("Exatas");
-            
-       DefaultComboBoxModel defaultComboModel;
-       defaultComboModel = new DefaultComboBoxModel(combo.toArray());
-        
+        DefaultComboBoxModel defaultComboModel;
+        defaultComboModel = new DefaultComboBoxModel(combo.toArray());
         comboArea.setModel(defaultComboModel);
     }
     public void windowClosed(WindowEvent e) {
@@ -240,7 +245,6 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nome = txt_nome.toString();
     }//GEN-LAST:event_txt_nomeActionPerformed
-
     private void txt_vagasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_vagasActionPerformed
         // TODO add your handling code here:
         String vagas = txt_vagas.toString();
@@ -251,27 +255,60 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
         //COLOCAR EM UMA VARIAVEL E IMPRIMIR AS SELECIONADAS
         System.out.println("Disciplina: " + txt_nome.getText());
         System.out.println("Carga horaria: " + txt_carga.getText()+ " horas");
-        System.out.println("Area: " + comboArea.getSelectedItem());
+        System.out.println("Area do conhecimento: " + comboArea.getSelectedItem());
         System.out.println("Qtd de vagas: "+ txt_vagas.getText());
-            if(check_diurno.isSelected())
-            {
-                System.out.println("Periodo: " + check_diurno.getText());
+           
+        String x = "";
+        String y = "";
+        String z = "";
+            if(check_diurno.isSelected()){
+                x = check_diurno.getText();
             }
-            if (check_vespertino.isSelected())
-            {
-                System.out.println("Periodo: " + check_vespertino.getText());
+            if (check_vespertino.isSelected()){
+                y = check_vespertino.getText();
             }
-            if(check_noturno.isSelected())
-            {
-                System.out.println("Periodo: " + check_noturno.getText());
+            if(check_noturno.isSelected()){
+                z = check_noturno.getText();
+            } 
+            if(z!="" | y!="" | x!=""){
+        String periodo = x +" "+ y +" "+ z;
+            
+        System.out.println("PERIODO: "+ periodo);
             }
-        
-     //   String Disciplina = "insert into tabela (disciplina, cargaHoraria,)"
-        
+    
+    
+    //--------------------------Conexão com o banco---------------------------------
+        Connection con = null;
+        try {
+            con = ConnectionJava.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormularioDeExclusao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    //------------------------------------------------------------------------------   
+    
+//         String Disciplina = "insert into db_disciplina (nome, cargaHoraria, areaConhecimento, numeroVagas) VALUES (" +txt_nome.getText(); 
+//         +txt_carga.getText(); + comboArea.getSelectedItem(); +txt_vagas.getText()' " );
+//                 
+//                 
+//                 txt_nome.getText();" ', "+txt_carga.getText(); + " ', " + comboArea.getSelectedItem(); + "'," + txt_vagas.getText(); +
+//            ","+ periodo )" ;  
+
+            
+        //String teste = "insert into db_disciplina (nome) values (" + txt_nome.getText() + " )";
+        String teste = "insert into db_disciplina (nome) values('texto111')";
+        System.out.println(teste);
+        try {
+            PreparedStatement stmt = con.prepareStatement(teste);
+            Statement st = con.createStatement();
+             ResultSet rs = stmt.executeQuery(teste);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormularioDeCadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btn_cadastrarActionPerformed
 
     private void check_diurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_diurnoActionPerformed
-             
+        // TODO add your handling code here:    
     }//GEN-LAST:event_check_diurnoActionPerformed
 
     private void txt_cargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cargaActionPerformed
@@ -295,19 +332,19 @@ public class FormularioDeCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:         
     }//GEN-LAST:event_comboAreaComponentShown
 
-    private void comboAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboAreaMouseClicked
-        // TODO add your handling code here:       
-    }//GEN-LAST:event_comboAreaMouseClicked
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        // TODO add your handling code here:
+        cancelar();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void comboAreaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAreaItemStateChanged
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(null, "SELECIONADO" + comboArea.getSelectedItem() );
     }//GEN-LAST:event_comboAreaItemStateChanged
 
-    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+    private void comboAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboAreaMouseClicked
         // TODO add your handling code here:
-        cancelar();
-    }//GEN-LAST:event_btn_cancelarActionPerformed
+    }//GEN-LAST:event_comboAreaMouseClicked
 
     /**
      * @param args the command line arguments
